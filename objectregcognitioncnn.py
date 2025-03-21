@@ -7,8 +7,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Image specifications
-img_width, img_height = 150, 150  # Dimensions of the input image
-train_data_path = '../AmazonDataset/train'  #Real path hidden for security reasons
+img_width, img_height = 150, 150  
+train_data_path = '../AmazonDataset/train'
 validation_data_path = '../AmazonDataset/valid' 
 n_sample_train = 24000  
 n_sample_valid = 4800  
@@ -23,7 +23,7 @@ else:
 # CNN model
 model = models.Sequential()
 
-# Convolutional layers with Batch Normalization and MaxPooling
+
 model.add(Conv2D(32, (3, 3), input_shape=input_shape))
 model.add(Activation('relu'))
 model.add(BatchNormalization())
@@ -44,7 +44,7 @@ model.add(Activation('relu'))
 model.add(BatchNormalization())
 model.add(MaxPooling2D(pool_size=(2, 2)))
 
-model.add(Flatten())  # Flatten the output
+model.add(Flatten())  
 
 # Dense layers for classification
 model.add(Dense(512))
@@ -57,7 +57,7 @@ model.add(BatchNormalization())
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
 
-model.add(Dense(10))  # Update this based on the number of classes you have
+model.add(Dense(10))  
 model.add(Activation('softmax'))  # Softmax for multi-class classification
 
 # Model compilation
@@ -73,7 +73,7 @@ train_datagen = ImageDataGenerator(
 
 valid_datagen = ImageDataGenerator(rescale=1. / 255)
 
-# Create generators
+
 train_generator = train_datagen.flow_from_directory(
     train_data_path,
     target_size=(img_height, img_width),
